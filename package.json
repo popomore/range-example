@@ -1,0 +1,8 @@
+{
+  "name": "range-example",
+  "version": "0.1.0",
+  "dependencies": {
+    "connect": "2.11.0",
+    "range-parser": "0.0.4"
+  }
+}
