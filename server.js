@@ -14,15 +14,20 @@ connect()
 function range(req, res, next) {
   res.setHeader('Accept-Range', 'bytes');
 
-  if (!req.headers.range) {
-    next();
-    return;
-  }
-
-  var path = join(process.cwd(), req.url)
+  var path = join(process.cwd(), req.url);
   fs.stat(path, function(err, stat) {
     if (err || stat.isDirectory()) {
       res.writeHead(404);
+      res.end();
+      return;
+    }
+
+    console.log(req.headers)
+
+    if (!req.headers.range) {
+      res.writeHead(200, {
+        'Content-Length': stat.size
+      });
       res.end();
       return;
     }
